@@ -9,17 +9,23 @@ class ReaderWriter {
     boolean writer=false;
 
     public void readerEnter() throws InterruptedException {
-        while (true) {
+
+         while(true) {
             synchronized (this) {
                 while (lock && readerCount == 0) {
-                    System.out.println("Reader From thread " + Thread.currentThread().getName()+" cannot read... Becase another Writer now writing");
+                    System.out.println("Reader From " + Thread.currentThread().getName()+" cannot read... Becase another Writer now writing");
                     wait();
                 }
                 readerCount++;
                 lock = true;
-                System.out.println("Reader " + readerCount + " from thread " + Thread.currentThread().getName()+" is reading...");
-//                Thread.sleep(1000);
-            }
+                
+                //Sleep For 3 seconds
+                System.out.println("Reader " + readerCount + " from " + Thread.currentThread().getName()+" is reading...");
+                Thread.sleep(1000);
+                System.out.println("Reader " + readerCount + " from " + Thread.currentThread().getName()+" is reading...");
+                Thread.sleep(1000);
+                System.out.println("Reader " + readerCount + " from " + Thread.currentThread().getName()+" is reading...");
+                Thread.sleep(1000);            }
         }
     }
 
@@ -27,7 +33,7 @@ class ReaderWriter {
         while (true) {
             synchronized (this) {
                 while (readerCount != 0) {
-                    System.out.println("Reader " + readerCount + " form thread " + Thread.currentThread().getName()+"is now exiting...");
+                    System.out.println("Reader " + readerCount + " form " + Thread.currentThread().getName()+" is now exiting...");
                     readerCount--;
                 }
                 lock = false;
@@ -47,8 +53,15 @@ class ReaderWriter {
                 }
                 lock = true;
                 writer=true;
+                //Sleep for 3 seconds
                 System.out.println("Writer " + Thread.currentThread().getName()+" is now writing.....");
-//                Thread.sleep(1000);
+                Thread.sleep(1000);
+                System.out.println("Writer " + Thread.currentThread().getName()+" is now writing.....");
+                Thread.sleep(1000);
+                System.out.println("Writer " + Thread.currentThread().getName()+" is now writing.....");
+                Thread.sleep(1000);
+
+
 
             }
         }
