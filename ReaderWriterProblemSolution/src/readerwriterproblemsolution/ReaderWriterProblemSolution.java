@@ -1,36 +1,27 @@
 package readerwriterproblemsolution;
-
 import java.util.Scanner;
 import java.util.concurrent.Semaphore;
-
 /**
  *
  * @author amirh
  */
 public class ReaderWriterProblemSolution {
-    static int readerCount = 0;
-    static Semaphore semaphore1 = new Semaphore(1);
-    static Semaphore readSemaphore = new Semaphore(1);
-    static Semaphore writeSemaphore = new Semaphore(1);
 
-    public static void main(String[] args) throws Exception {
-        Read read = new Read(semaphore1,readSemaphore,writeSemaphore,readerCount);
-        Write write = new Write(semaphore1,readSemaphore,writeSemaphore,readerCount);
-        
-        Scanner input = new Scanner(System.in);
-        System.out.println("Enter Number Of Threads You Want !....");
-        int numberOfThreads = input.nextInt();
-        System.out.println("yyy");
-        
-        Thread[] threads = new Thread[numberOfThreads];
-        for (int i = 0; i < numberOfThreads; i++) {
-            threads[i] = new Thread(read);           
-            threads[i] = new Thread(write);
-
-        }
-        for (int i = 0; i < threads.length; i++) 
-            threads[i].start();
-            
+     public static void main(String[] args) throws Exception {
+        Read read = new Read();
+        Write write = new Write();
+        Thread t1 = new Thread(read);
+        t1.setName("thread1");
+        Thread t2 = new Thread(read);
+        t2.setName("thread2");
+        Thread t3 = new Thread(write);
+        t3.setName("thread3");
+        Thread t4 = new Thread(write);
+        t4.setName("thread4");
+        t1.start();
+        t2.start();
+        t3.start();
+        t4.start();
     }
 
 }
