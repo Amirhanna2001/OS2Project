@@ -16,7 +16,8 @@ class ReaderWriter {
                     System.out.println("Reader From " + Thread.currentThread().getName()+" cannot read... Becase another Writer now writing");
                     wait();
                 }
-                readerCount++;
+                
+                ++readerCount;
                 lock = true;
                 
                 //Sleep For 3 seconds
@@ -25,7 +26,8 @@ class ReaderWriter {
                 System.out.println("Reader " + readerCount + " from " + Thread.currentThread().getName()+" is reading...");
                 Thread.sleep(1000);
                 System.out.println("Reader " + readerCount + " from " + Thread.currentThread().getName()+" is reading...");
-                Thread.sleep(1000);            }
+                Thread.sleep(1000);            
+            }
         }
     }
 
