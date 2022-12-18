@@ -4,7 +4,6 @@
  */
 package readerwriterproblemsolution;
 
-import java.util.concurrent.Semaphore;
 
 /**
  *
