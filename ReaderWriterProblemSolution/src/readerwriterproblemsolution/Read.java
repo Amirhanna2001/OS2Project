@@ -8,25 +8,28 @@ import java.util.concurrent.Semaphore;
 class Read implements Runnable {
         @Override
         public void run() {
-            try {
-                ReaderWriterVariables.rsem.acquire();
-                ReaderWriterVariables.x.acquire();
+//            while(true){
+                try {
+                ReaderWriterVariables.readSemaphore.acquire();
+                ReaderWriterVariables.mutexSemaphore.acquire();
                 ReaderWriterVariables.readerCount++;
-                if (ReaderWriterVariables.readerCount == 1) ReaderWriterVariables.wsem.acquire();
-                ReaderWriterVariables.x.release();
+                if (ReaderWriterVariables.readerCount == 1) ReaderWriterVariables.writeSemaphore.acquire();
+                ReaderWriterVariables.mutexSemaphore.release();
 
-                System.out.println("Thread "+Thread.currentThread().getName() + " is READING");
+                System.out.println(Thread.currentThread().getName() + " is READING");
                 Thread.sleep(1500);
-                System.out.println("Thread "+Thread.currentThread().getName() + " has FINISHED READING");
+                System.out.println(Thread.currentThread().getName() + " has FINISHED READING");
                 
-                ReaderWriterVariables.x.acquire();
+                ReaderWriterVariables.mutexSemaphore.acquire();
                 ReaderWriterVariables.readerCount--;
-                if (ReaderWriterVariables.readerCount == 0) ReaderWriterVariables.wsem.release();
-                ReaderWriterVariables.x.release();
-                ReaderWriterVariables.rsem.release();
+                if (ReaderWriterVariables.readerCount == 0) ReaderWriterVariables.writeSemaphore.release();
+                ReaderWriterVariables.mutexSemaphore.release();
+                ReaderWriterVariables.readSemaphore.release();
 
             } catch (InterruptedException e) {
                 System.out.println(e.getMessage());
             }
+//            }
+            
         }
     }

@@ -8,8 +8,9 @@ import java.util.concurrent.Semaphore;
  */
 public class ReaderWriterVariables {
      static int readerCount = 0;
-    static Semaphore x = new Semaphore(1);
-    static Semaphore rsem = new Semaphore(1);
-    static Semaphore wsem = new Semaphore(1);
+     static String sharedData = "ReaderWriterDefaultValue";
+    static Semaphore mutexSemaphore = new Semaphore(1);
+    static Semaphore readSemaphore = new Semaphore(1);
+    static Semaphore writeSemaphore = new Semaphore(1);
     
 }
