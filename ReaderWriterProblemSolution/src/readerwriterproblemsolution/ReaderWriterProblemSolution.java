@@ -12,7 +12,7 @@ public class ReaderWriterProblemSolution {
         Thread t1 = new Thread(read);
         Thread t2 = new Thread(read);
         Thread t3 = new Thread(write);
-        Thread t4 = new Thread(write);
+        Thread t4 = new Thread(write);    
         
         t3.start();
         t4.start();
