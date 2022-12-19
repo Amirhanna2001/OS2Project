@@ -35,6 +35,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class ReaderFrame extends JFrame {
+    static String PATH = "F:\\College\\LEVEL4\\OS2\\Project\\OS2Project\\Items.txt";
 
 	private JPanel contentPane;
 	private String[] header = { "Name ", "Quantity " };
@@ -108,7 +109,7 @@ public class ReaderFrame extends JFrame {
 	// read
 	public ArrayList<Product> getItems() {
 		try {
-			Path path = Paths.get("H:\\Java Developer\\help\\test.txt").toAbsolutePath();
+			Path path = Paths.get(PATH).toAbsolutePath();
 			ArrayList<String> Reader = (ArrayList<String>) Files.lines(path).collect(Collectors.toList());
 
 			String[] split;

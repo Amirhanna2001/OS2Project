@@ -178,7 +178,7 @@ public class WriterFrame extends JFrame {
 
 	// read
 	public ArrayList<Product> getItems() throws IOException {
-		Path path = Paths.get("H:\\Java Developer\\help\\test.txt").toAbsolutePath();
+		Path path = Paths.get(ReaderFrame.PATH).toAbsolutePath();
 		ArrayList<String> Reader = (ArrayList<String>) Files.lines(path).collect(Collectors.toList());
 		ArrayList<Product> products = new ArrayList<>();
 		String[] split;
@@ -250,10 +250,10 @@ public class WriterFrame extends JFrame {
 	}
 
 	public void delete_Create_Add(ArrayList<Product> rem) throws IOException {
-		FileOutputStream writer = new FileOutputStream("H:\\Java Developer\\help\\test.txt");
+		FileOutputStream writer = new FileOutputStream(ReaderFrame.PATH);
 		writer.write(("").getBytes());
 		writer.close();
-		PrintWriter w = new PrintWriter("H:\\Java Developer\\help\\test.txt");
+		PrintWriter w = new PrintWriter(ReaderFrame.PATH);
 		for (int i = 0; i < rem.size(); i++) {
 			w.println(rem.get(i).getName() + " " + rem.get(i).getCounter());
 		}
